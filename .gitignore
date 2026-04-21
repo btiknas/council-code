@@ -1,0 +1,29 @@
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Claude Code local state
+.claude/settings.local.json
+.claude/projects/
+
+# Node (if anyone adds tooling later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python (if anyone adds tooling later)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Logs / temp
+*.log
+tmp/

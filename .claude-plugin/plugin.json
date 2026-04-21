@@ -1,0 +1,34 @@
+{
+  "name": "council-code",
+  "version": "0.1.0",
+  "description": "Five-advisor council skill for Claude Code. Stress-tests code/architecture/engineering decisions with Contrarian, First Principles, Expansionist, Outsider, and Executor personas running in parallel, then synthesizes a chairman verdict.",
+  "author": {
+    "name": "btiknas",
+    "url": "https://github.com/btiknas"
+  },
+  "homepage": "https://github.com/btiknas/council-code",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/btiknas/council-code.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "skill",
+    "council",
+    "multi-agent",
+    "decision-making",
+    "code-review",
+    "architecture"
+  ],
+  "skills": [
+    "skills/council-code"
+  ],
+  "agents": [
+    "agents/contrarian.md",
+    "agents/first-principles.md",
+    "agents/expansionist.md",
+    "agents/outsider.md",
+    "agents/executor.md"
+  ]
+}
