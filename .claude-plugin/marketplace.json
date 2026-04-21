@@ -1,0 +1,17 @@
+{
+  "name": "council-code",
+  "owner": {
+    "name": "btiknas",
+    "url": "https://github.com/btiknas"
+  },
+  "plugins": [
+    {
+      "name": "council-code",
+      "source": {
+        "source": "github",
+        "repo": "btiknas/council-code"
+      },
+      "description": "Five-advisor code decision council: Contrarian, First Principles, Expansionist, Outsider, Executor — in parallel, with chairman synthesis."
+    }
+  ]
+}
