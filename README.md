@@ -54,6 +54,8 @@ By default `install.sh` **symlinks** the skill, the 5 persona agents, and the `/
 
 **Updates:** Run `/council-update` inside Claude Code. It fetches `origin/main`, shows the changelog, asks for confirmation, and fast-forwards the repo. (Or run `git pull` in the repo manually — symlinks pick up the new files immediately.)
 
+The installer also wires a **statusline badge**: when `origin/main` is ahead of your local clone, Claude Code's statusline shows `⬆ /council-update` at the left. A background `git fetch` runs once per Claude Code session (debounced to 1× per hour) to keep that indicator fresh. If you already have another statusline configured (e.g. GSD's), the installer preserves it and our wrapper appends its output after the council badge — you lose nothing.
+
 ### Option B — As a Claude Code plugin
 
 Appears as `/council-code:council-code` (plugins are always namespaced).
@@ -187,7 +189,10 @@ council-code/
 ├── docs/
 │   ├── personas.md                # Why these 5
 │   └── usage.md                   # Example transcripts
-├── hooks/                         # (reserved)
+├── hooks/                         # Statusline wrapper + SessionStart update check
+│   ├── council-statusline.js
+│   ├── council-check-update.js
+│   └── council-check-update-worker.js
 ├── mcp-server/                    # (reserved)
 ├── CLAUDE.md                      # Repo context for Claude
 ├── LICENSE                        # MIT
