@@ -78,9 +78,14 @@ echo "  target: $CLAUDE_DIR"
 echo "  mode:   $MODE"
 echo
 
+SKILLS=( council-code council-update )
+PERSONAS=( contrarian first-principles expansionist outsider executor )
+
 if [[ "$MODE" == "uninstall" ]]; then
-  remove_target "$SKILLS_DIR/council-code"
-  for persona in contrarian first-principles expansionist outsider executor; do
+  for skill in "${SKILLS[@]}"; do
+    remove_target "$SKILLS_DIR/$skill"
+  done
+  for persona in "${PERSONAS[@]}"; do
     remove_target "$AGENTS_DIR/$persona.md"
   done
   echo
@@ -91,21 +96,25 @@ fi
 mkdir -p "$SKILLS_DIR" "$AGENTS_DIR"
 
 if [[ "$MODE" == "symlink" ]]; then
-  install_link "$REPO_ROOT/skills/council-code" "$SKILLS_DIR/council-code"
-  for persona in contrarian first-principles expansionist outsider executor; do
+  for skill in "${SKILLS[@]}"; do
+    install_link "$REPO_ROOT/skills/$skill" "$SKILLS_DIR/$skill"
+  done
+  for persona in "${PERSONAS[@]}"; do
     install_link "$REPO_ROOT/agents/$persona.md" "$AGENTS_DIR/$persona.md"
   done
 else
-  install_copy "$REPO_ROOT/skills/council-code" "$SKILLS_DIR/council-code"
-  for persona in contrarian first-principles expansionist outsider executor; do
+  for skill in "${SKILLS[@]}"; do
+    install_copy "$REPO_ROOT/skills/$skill" "$SKILLS_DIR/$skill"
+  done
+  for persona in "${PERSONAS[@]}"; do
     install_copy "$REPO_ROOT/agents/$persona.md" "$AGENTS_DIR/$persona.md"
   done
 fi
 
 echo
-ok "done. Restart Claude Code, then try: /council-code"
+ok "done. Restart Claude Code, then try: /council-code (update check: /council-update)"
 if [[ "$MODE" == "symlink" ]]; then
-  say "Updates: git pull in this repo — changes take effect immediately."
+  say "Updates: /council-update  — or: git pull in this repo"
 else
   say "Updates: git pull, then re-run ./install.sh --copy."
 fi

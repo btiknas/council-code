@@ -1,6 +1,6 @@
 {
   "name": "council-code",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Five-advisor code decision council for Claude Code. Stress-tests code/architecture/engineering decisions with Contrarian, First Principles, Expansionist, Outsider, and Executor personas running in parallel, then synthesizes a chairman verdict.",
   "author": {
     "name": "btiknas",

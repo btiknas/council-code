@@ -44,13 +44,15 @@ cd council-code
 
 Restart Claude Code, then use `/council-code` or natural language ("get a second opinion," "stress test this").
 
-By default `install.sh` **symlinks** the skill and the 5 persona agents into `~/.claude/`, so `git pull` in the repo is enough to update — no reinstall needed. Flags:
+By default `install.sh` **symlinks** the skill, the 5 persona agents, and the `/council-update` helper into `~/.claude/`, so `git pull` in the repo is enough to update — no reinstall needed. Flags:
 
 ```bash
 ./install.sh              # symlink mode (default)
 ./install.sh --copy       # copy files instead of symlinking
 ./install.sh --uninstall  # remove symlinks/files
 ```
+
+**Updates:** Run `/council-update` inside Claude Code. It fetches `origin/main`, shows the changelog, asks for confirmation, and fast-forwards the repo. (Or run `git pull` in the repo manually — symlinks pick up the new files immediately.)
 
 ### Option B — As a Claude Code plugin
 
@@ -178,7 +180,9 @@ council-code/
 │   ├── expansionist.md
 │   ├── outsider.md
 │   └── executor.md
-├── skills/council-code/SKILL.md   # Orchestrator
+├── skills/
+│   ├── council-code/SKILL.md      # Orchestrator
+│   └── council-update/SKILL.md    # /council-update — pull latest from GitHub
 ├── install.sh                     # User-global installer (symlink or copy)
 ├── docs/
 │   ├── personas.md                # Why these 5
