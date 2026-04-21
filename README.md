@@ -42,6 +42,20 @@ All five run **in parallel** (never sequential) to prevent anchoring. Each is a 
 
 That's it. The skill is now available via `/council` or natural language ("get a second opinion," "stress test this").
 
+> **⚠ Prerequisite:** Claude Code clones plugin repos over **SSH** (`git@github.com:…`). If you see `Permission denied (publickey)` during install, you don't have an SSH key registered with GitHub. Two fixes:
+>
+> **Fix 1 — Add an SSH key** (cleanest):
+> ```bash
+> ssh-keygen -t ed25519 -C "you@example.com" -f ~/.ssh/id_ed25519 -N ""
+> gh ssh-key add ~/.ssh/id_ed25519.pub --title "claude-code"
+> ```
+>
+> **Fix 2 — Rewrite SSH to HTTPS globally** (if you already use `gh auth` with an HTTPS token):
+> ```bash
+> git config --global url."https://github.com/".insteadOf git@github.com:
+> ```
+> This makes every `git@github.com:` URL transparently use HTTPS + your `gh` credentials. Undo with `git config --global --unset url."https://github.com/".insteadOf`.
+
 ### Option B — Manual install (user-global)
 
 Clone and copy into your global Claude Code config:
