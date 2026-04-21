@@ -32,7 +32,29 @@ All five run **in parallel** (never sequential) to prevent anchoring. Each is a 
 
 ## Installation
 
-### Option A — As a Claude Code plugin (recommended)
+### Option A — `install.sh` (recommended, user-global)
+
+Gives you a bare `/council-code` slash command (no plugin namespace).
+
+```bash
+git clone https://github.com/btiknas/council-code.git
+cd council-code
+./install.sh
+```
+
+Restart Claude Code, then use `/council-code` or natural language ("get a second opinion," "stress test this").
+
+By default `install.sh` **symlinks** the skill and the 5 persona agents into `~/.claude/`, so `git pull` in the repo is enough to update — no reinstall needed. Flags:
+
+```bash
+./install.sh              # symlink mode (default)
+./install.sh --copy       # copy files instead of symlinking
+./install.sh --uninstall  # remove symlinks/files
+```
+
+### Option B — As a Claude Code plugin
+
+Appears as `/council-code:council-code` (plugins are always namespaced).
 
 ```bash
 # In Claude Code:
@@ -40,7 +62,7 @@ All five run **in parallel** (never sequential) to prevent anchoring. Each is a 
 /plugin install council-code@council-code
 ```
 
-That's it. The skill is now available via `/council` or natural language ("get a second opinion," "stress test this").
+Updates via `/plugin update council-code`.
 
 > **⚠ Prerequisite:** Claude Code clones plugin repos over **SSH** (`git@github.com:…`). If you see `Permission denied (publickey)` during install, you don't have an SSH key registered with GitHub. Two fixes:
 >
@@ -55,17 +77,6 @@ That's it. The skill is now available via `/council` or natural language ("get a
 > git config --global url."https://github.com/".insteadOf git@github.com:
 > ```
 > This makes every `git@github.com:` URL transparently use HTTPS + your `gh` credentials. Undo with `git config --global --unset url."https://github.com/".insteadOf`.
-
-### Option B — Manual install (user-global)
-
-Clone and copy into your global Claude Code config:
-
-```bash
-git clone https://github.com/btiknas/council-code.git
-mkdir -p ~/.claude/skills ~/.claude/agents
-cp -r council-code/skills/council-code ~/.claude/skills/
-cp council-code/agents/*.md ~/.claude/agents/
-```
 
 ### Option C — Manual install (project-scoped)
 
@@ -168,6 +179,7 @@ council-code/
 │   ├── outsider.md
 │   └── executor.md
 ├── skills/council-code/SKILL.md   # Orchestrator
+├── install.sh                     # User-global installer (symlink or copy)
 ├── docs/
 │   ├── personas.md                # Why these 5
 │   └── usage.md                   # Example transcripts
