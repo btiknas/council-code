@@ -97,103 +97,21 @@ have_node() {
 patch_settings_install() {
   [[ -f "$SETTINGS_FILE" ]] || { echo '{}' > "$SETTINGS_FILE"; }
   have_node || { warn "node not found — skipping settings.json patch (statusline + SessionStart hook will NOT be wired)"; return 0; }
-
-  local wrapper="$HOOKS_DIR/council-statusline.js"
-  local check_hook="$HOOKS_DIR/council-check-update.js"
-  local next_file="$HOOKS_DIR/council-statusline-next.txt"
-
-  node - "$SETTINGS_FILE" "$wrapper" "$check_hook" "$next_file" <<'NODE'
-const fs = require('fs');
-const [file, wrapper, checkHook, nextFile] = process.argv.slice(2);
-
-const wrapperCmd = `node "${wrapper}"`;
-const checkCmd = `node "${checkHook}"`;
-
-let raw = '';
-try { raw = fs.readFileSync(file, 'utf8'); } catch (e) {}
-const backup = `${file}.bak.${Date.now()}`;
-if (raw) fs.writeFileSync(backup, raw);
-
-let cfg = {};
-try { cfg = JSON.parse(raw || '{}'); } catch (e) {
-  console.error(`settings.json is not valid JSON — refusing to patch. Backup at ${backup}`);
-  process.exit(1);
-}
-
-// 1. statusLine: if a different command is already set, save it for delegation.
-cfg.statusLine = cfg.statusLine || { type: 'command', command: '' };
-const existing = (cfg.statusLine.command || '').trim();
-if (existing && existing !== wrapperCmd) {
-  fs.writeFileSync(nextFile, existing + '\n');
-  console.log(`  preserved previous statusLine → ${nextFile}`);
-}
-cfg.statusLine.type = 'command';
-cfg.statusLine.command = wrapperCmd;
-
-// 2. SessionStart hook: append ours if not already present.
-cfg.hooks = cfg.hooks || {};
-cfg.hooks.SessionStart = cfg.hooks.SessionStart || [];
-const already = cfg.hooks.SessionStart.some(group =>
-  (group.hooks || []).some(h => (h.command || '').includes('council-check-update.js'))
-);
-if (!already) {
-  cfg.hooks.SessionStart.push({
-    hooks: [{ type: 'command', command: checkCmd }],
-  });
-}
-
-fs.writeFileSync(file, JSON.stringify(cfg, null, 2) + '\n');
-console.log(`  patched ${file} (backup: ${backup})`);
-NODE
+  node "$REPO_ROOT/hooks/patch-settings.js" \
+    --settings "$SETTINGS_FILE" \
+    --install \
+    --statusline "node \"$HOOKS_DIR/council-statusline.js\"" \
+    --hook "node \"$HOOKS_DIR/council-check-update.js\"" \
+    --next-file "$HOOKS_DIR/council-statusline-next.txt"
 }
 
 patch_settings_uninstall() {
   [[ -f "$SETTINGS_FILE" ]] || return 0
   have_node || { warn "node not found — settings.json left as-is, remove hooks manually"; return 0; }
-
-  local next_file="$HOOKS_DIR/council-statusline-next.txt"
-  node - "$SETTINGS_FILE" "$next_file" <<'NODE'
-const fs = require('fs');
-const [file, nextFile] = process.argv.slice(2);
-
-let raw = '';
-try { raw = fs.readFileSync(file, 'utf8'); } catch (e) { process.exit(0); }
-const backup = `${file}.bak.${Date.now()}`;
-fs.writeFileSync(backup, raw);
-
-let cfg;
-try { cfg = JSON.parse(raw); } catch (e) { console.error('settings.json invalid; not touched'); process.exit(0); }
-
-// Restore previous statusLine if we saved one; otherwise remove ours.
-if (cfg.statusLine && typeof cfg.statusLine.command === 'string' &&
-    cfg.statusLine.command.includes('council-statusline.js')) {
-  let restored = '';
-  try { restored = fs.readFileSync(nextFile, 'utf8').trim(); } catch (e) {}
-  if (restored) {
-    cfg.statusLine.command = restored;
-    console.log(`  restored previous statusLine`);
-  } else {
-    delete cfg.statusLine;
-    console.log(`  removed statusLine`);
-  }
-}
-
-// Remove our SessionStart entry.
-if (cfg.hooks && Array.isArray(cfg.hooks.SessionStart)) {
-  cfg.hooks.SessionStart = cfg.hooks.SessionStart
-    .map(group => ({
-      ...group,
-      hooks: (group.hooks || []).filter(h => !(h.command || '').includes('council-check-update.js')),
-    }))
-    .filter(group => (group.hooks || []).length > 0);
-  if (cfg.hooks.SessionStart.length === 0) delete cfg.hooks.SessionStart;
-}
-
-fs.writeFileSync(file, JSON.stringify(cfg, null, 2) + '\n');
-console.log(`  cleaned ${file} (backup: ${backup})`);
-NODE
-
-  [[ -f "$next_file" ]] && rm -f "$HOOKS_DIR/council-statusline-next.txt"
+  node "$REPO_ROOT/hooks/patch-settings.js" \
+    --settings "$SETTINGS_FILE" \
+    --uninstall \
+    --next-file "$HOOKS_DIR/council-statusline-next.txt"
 }
 
 # --- main --------------------------------------------------------------------
@@ -210,6 +128,13 @@ HOOKS=( council-statusline.js council-check-update.js council-check-update-worke
 
 if [[ "$MODE" == "uninstall" ]]; then
   patch_settings_uninstall
+
+  # Remove legacy bare-name agents (for users who installed pre-rename, per D-03)
+  LEGACY_PERSONAS=( contrarian first-principles expansionist outsider executor )
+  for persona in "${LEGACY_PERSONAS[@]}"; do
+    remove_target "$AGENTS_DIR/$persona.md"
+  done
+
   for skill in "${SKILLS[@]}"; do
     remove_target "$SKILLS_DIR/$skill"
   done
