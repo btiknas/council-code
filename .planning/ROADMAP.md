@@ -47,7 +47,11 @@ Plans:
   2. Each strategy advisor produces output using domain vocabulary (market fit, viability, risk/reward) rather than code-review vocabulary
   3. Chairman synthesis evaluates decisions against strategy-specific success criteria (viability, market fit, risk/reward)
   4. User can invoke any individual strategy advisor by name without running the full council
-**Plans**: TBD
+**Plans:** 3 plans
+Plans:
+- [ ] 02-01-PLAN.md — Write 5 strategy advisor agent files with domain-native personas and unique output templates
+- [ ] 02-02-PLAN.md — Create council-strategy SKILL.md orchestrator with custom synthesis and Go/No-Go/Pivot verdict
+- [ ] 02-03-PLAN.md — Update install.sh arrays and verify end-to-end installation
 
 ### Phase 3: Router
 **Goal**: Users can ask any question and receive an intelligent council suggestion with reasoning, without being auto-dispatched to the wrong council
@@ -117,12 +121,12 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-04-23 |
-| 2. Council Strategy | 0/TBD | Not started | - |
+| 2. Council Strategy | 0/3 | Planned | - |
 | 3. Router | 0/TBD | Not started | - |
 | 4. Council Design | 0/TBD | Not started | - |
 | 5. Council Research | 0/TBD | Not started | - |
