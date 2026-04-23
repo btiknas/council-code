@@ -21,7 +21,13 @@ const path = require('path');
 // argv parsing (manual scan, no npm deps)
 // ---------------------------------------------------------------------------
 const argv = process.argv.slice(2);
-const get = (flag) => { const i = argv.indexOf(flag); return i !== -1 ? argv[i + 1] : null; };
+const get = (flag) => {
+  const i = argv.indexOf(flag);
+  if (i === -1 || i + 1 >= argv.length) return null;
+  const val = argv[i + 1];
+  if (val.startsWith('--')) return null;  // next arg is a flag, not a value
+  return val;
+};
 const has = (flag) => argv.includes(flag);
 
 const settingsFile  = get('--settings');
