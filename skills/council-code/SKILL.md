@@ -1,6 +1,7 @@
 ---
 name: council-code
 description: Multi-perspective code decision council. Runs 5 expert advisors (Contrarian, First Principles, Expansionist, Outsider, Executor) in parallel on a code/architecture/engineering question, then synthesizes a chairman verdict with agreements, clashes, blind spots, and a concrete next step.
+disable-model-invocation: true
 ---
 
 # council-code
@@ -37,7 +38,7 @@ Trigger phrases: `/council`, `council`, "get a second opinion," "stress test thi
 | **Outsider** | Imports a pattern from a distant domain |
 | **Executor** | Answers "what do you do Monday morning?" |
 
-Agent definitions live in `agents/` at the repo root (see `agents/contrarian.md`, etc.).
+Agent definitions live in `agents/` at the repo root (see `agents/code-contrarian.md`, etc.).
 
 ## Protocol
 
@@ -105,10 +106,10 @@ End with: "Want me to (a) execute the Executor's first action, (b) dig deeper in
 
 ## References
 
-- `agents/contrarian.md` — Fatal flaw finder
-- `agents/first-principles.md` — Primitives reducer
-- `agents/expansionist.md` — Upside seeker
-- `agents/outsider.md` — Distant-domain importer
-- `agents/executor.md` — Monday-morning shipper
+- `agents/code-contrarian.md` — Fatal flaw finder
+- `agents/code-first-principles.md` — Primitives reducer
+- `agents/code-expansionist.md` — Upside seeker
+- `agents/code-outsider.md` — Distant-domain importer
+- `agents/code-executor.md` — Monday-morning shipper
 - `docs/personas.md` — Longer persona notes
 - `docs/usage.md` — Example transcripts
