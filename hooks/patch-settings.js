@@ -124,7 +124,9 @@ if (isUninstall) {
   if (cfg.statusLine && typeof cfg.statusLine.command === 'string' &&
       cfg.statusLine.command.includes('council-statusline.js')) {
     let restored = '';
-    try { restored = fs.readFileSync(nextFile, 'utf8').trim(); } catch (e) {}
+    if (nextFile) {
+      try { restored = fs.readFileSync(nextFile, 'utf8').trim(); } catch (e) {}
+    }
     if (restored) {
       cfg.statusLine.command = restored;
       console.log(`  restored previous statusLine`);
