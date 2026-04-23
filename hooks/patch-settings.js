@@ -70,7 +70,9 @@ if (isInstall) {
   }
 
   let raw = '';
-  try { raw = fs.readFileSync(settingsFile, 'utf8'); } catch (e) {}
+  try { raw = fs.readFileSync(settingsFile, 'utf8'); } catch (e) {
+    if (e.code !== 'ENOENT') { console.error(`Cannot read ${settingsFile}: ${e.message}`); process.exit(1); }
+  }
   const backup = `${settingsFile}.bak.${Date.now()}`;
   if (raw) fs.writeFileSync(backup, raw);
 
@@ -125,7 +127,9 @@ if (isUninstall) {
       cfg.statusLine.command.includes('council-statusline.js')) {
     let restored = '';
     if (nextFile) {
-      try { restored = fs.readFileSync(nextFile, 'utf8').trim(); } catch (e) {}
+      try { restored = fs.readFileSync(nextFile, 'utf8').trim(); } catch (e) {
+        if (e.code !== 'ENOENT') { console.error(`  warning: could not read ${nextFile}: ${e.message}`); }
+      }
     }
     if (restored) {
       cfg.statusLine.command = restored;
