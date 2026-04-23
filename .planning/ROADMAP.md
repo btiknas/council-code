@@ -36,7 +36,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 Plans:
 - [x] 01-01-PLAN.md — Rename agent files to code- prefix and update SKILL.md
 - [x] 01-02-PLAN.md — Extract patch-settings.js from install.sh heredoc
-- [ ] 01-03-PLAN.md — Update install.sh arrays, delegation, and dual-name uninstall
+- [x] 01-03-PLAN.md — Update install.sh arrays, delegation, and dual-name uninstall
 
 ### Phase 2: Council Strategy
 **Goal**: Users can run a 5-advisor strategy council on business and product decisions with domain-native personas and synthesis
@@ -121,7 +121,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 2/3 | In Progress | - |
+| 1. Foundation | 3/3 | Complete | 2026-04-23 |
 | 2. Council Strategy | 0/TBD | Not started | - |
 | 3. Router | 0/TBD | Not started | - |
 | 4. Council Design | 0/TBD | Not started | - |
