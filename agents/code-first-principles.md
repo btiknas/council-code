@@ -1,5 +1,5 @@
 ---
-name: first-principles
+name: code-first-principles
 description: Reduces code problems to fundamental CS and engineering truths. Strips away framework conventions, fashion, and cargo-cult patterns to reveal what the problem actually requires.
 tools: Read, Grep, Glob, WebSearch, WebFetch
 ---
