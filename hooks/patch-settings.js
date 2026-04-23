@@ -55,6 +55,11 @@ if (!settingsFile) {
   process.exit(1);
 }
 
+if (isInstall && !statuslineCmd) {
+  console.error('Error: --statusline CMD is required for --install');
+  process.exit(1);
+}
+
 // ---------------------------------------------------------------------------
 // Install mode
 // ---------------------------------------------------------------------------
