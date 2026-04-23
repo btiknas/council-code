@@ -32,7 +32,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. All code council agent files carry `code-` prefix (e.g., `code-contrarian.md`) and no bare-name files remain in the agents directory
   3. Settings.json patching is performed by a standalone `hooks/patch-settings.js` script callable by any council installer, not inline in install.sh
   4. All council SKILL.md orchestrators include `disable-model-invocation: true` frontmatter and do not auto-load into context
-**Plans**: TBD
+**Plans:** 3 plans
+Plans:
+- [ ] 01-01-PLAN.md — Rename agent files to code- prefix and update SKILL.md
+- [ ] 01-02-PLAN.md — Extract patch-settings.js from install.sh heredoc
+- [ ] 01-03-PLAN.md — Update install.sh arrays, delegation, and dual-name uninstall
 
 ### Phase 2: Council Strategy
 **Goal**: Users can run a 5-advisor strategy council on business and product decisions with domain-native personas and synthesis
@@ -117,7 +121,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/TBD | Not started | - |
+| 1. Foundation | 0/3 | Planning complete | - |
 | 2. Council Strategy | 0/TBD | Not started | - |
 | 3. Router | 0/TBD | Not started | - |
 | 4. Council Design | 0/TBD | Not started | - |
