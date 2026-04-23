@@ -205,8 +205,8 @@ echo "  mode:   $MODE"
 echo
 
 SKILLS=( council-code council-update )
-PERSONAS=( contrarian first-principles expansionist outsider executor )
-HOOKS=( council-statusline.js council-check-update.js council-check-update-worker.js )
+PERSONAS=( code-contrarian code-first-principles code-expansionist code-outsider code-executor )
+HOOKS=( council-statusline.js council-check-update.js council-check-update-worker.js patch-settings.js )
 
 if [[ "$MODE" == "uninstall" ]]; then
   patch_settings_uninstall
