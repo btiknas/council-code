@@ -24,12 +24,18 @@ AGENTS_DIR="$CLAUDE_DIR/agents"
 HOOKS_DIR="$CLAUDE_DIR/hooks"
 SETTINGS_FILE="$CLAUDE_DIR/settings.json"
 
-MODE="symlink"
+MODE=""
 for arg in "$@"; do
   case "$arg" in
-    --copy)      MODE="copy" ;;
-    --uninstall) MODE="uninstall" ;;
-    --symlink)   MODE="symlink" ;;
+    --copy)
+      [[ -z "$MODE" || "$MODE" == "copy" ]] || { echo "Error: --copy conflicts with --$MODE" >&2; exit 2; }
+      MODE="copy" ;;
+    --uninstall)
+      [[ -z "$MODE" || "$MODE" == "uninstall" ]] || { echo "Error: --uninstall conflicts with --$MODE" >&2; exit 2; }
+      MODE="uninstall" ;;
+    --symlink)
+      [[ -z "$MODE" || "$MODE" == "symlink" ]] || { echo "Error: --symlink conflicts with --$MODE" >&2; exit 2; }
+      MODE="symlink" ;;
     -h|--help)
       sed -n '2,17p' "$0" | sed 's/^# \{0,1\}//'
       exit 0
@@ -37,6 +43,7 @@ for arg in "$@"; do
     *) echo "Unknown arg: $arg" >&2; exit 2 ;;
   esac
 done
+MODE="${MODE:-symlink}"
 
 say() { printf '  %s\n' "$*"; }
 ok()  { printf '  \033[32m✓\033[0m %s\n' "$*"; }
