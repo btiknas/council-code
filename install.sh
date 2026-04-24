@@ -129,8 +129,9 @@ echo "  target: $CLAUDE_DIR"
 echo "  mode:   $MODE"
 echo
 
-SKILLS=( council-code council-update )
-PERSONAS=( code-contrarian code-first-principles code-expansionist code-outsider code-executor )
+SKILLS=( council-code council-update council-strategy )
+PERSONAS=( code-contrarian code-first-principles code-expansionist code-outsider code-executor \
+           strategy-devils-advocate strategy-visionary strategy-pragmatist strategy-customer-champion strategy-operator )
 HOOKS=( council-statusline.js council-check-update.js council-check-update-worker.js patch-settings.js )
 
 if [[ "$MODE" == "uninstall" ]]; then
