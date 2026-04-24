@@ -61,7 +61,10 @@ Plans:
   1. User can invoke the router skill and receive a specific council recommendation with reasoning for why that council fits
   2. Router always presents its suggestion and waits for user confirmation before dispatching — never auto-runs a council
   3. Each council SKILL.md carries domain-specific trigger phrases in its description frontmatter so Claude Code can surface the right council naturally
-**Plans**: TBD
+**Plans:** 2 plans
+Plans:
+- [ ] 03-01-PLAN.md — Create council-router SKILL.md and add trigger phrases to council-code description
+- [ ] 03-02-PLAN.md — Update install.sh and verify end-to-end routing flow
 
 ### Phase 4: Council Design
 **Goal**: Users can run a 5-advisor design council on UI/UX decisions with domain-native personas and synthesis
@@ -127,7 +130,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-04-23 |
 | 2. Council Strategy | 0/3 | Planned | - |
-| 3. Router | 0/TBD | Not started | - |
+| 3. Router | 0/2 | Planned | - |
 | 4. Council Design | 0/TBD | Not started | - |
 | 5. Council Research | 0/TBD | Not started | - |
 | 6. Council Review | 0/TBD | Not started | - |
