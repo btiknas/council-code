@@ -24,14 +24,14 @@ decisions:
 metrics:
   duration: "< 5m"
   completed: "2026-04-24"
-  tasks_completed: 1
+  tasks_completed: 2
   tasks_total: 2
   files_created: 0
   files_modified: 1
 requirements:
   - ROUT-01
   - ROUT-02
-status: checkpoint-pending
+status: complete
 ---
 
 # Phase 3 Plan 02: Install.sh Update and End-to-End Verification Summary
@@ -77,7 +77,7 @@ Human verification required. See checkpoint details below.
 
 ## Checkpoint: Task 2 — End-to-End Verification
 
-**Status:** PENDING — awaiting human verification
+**Status:** APPROVED — human verified 2026-04-24
 
 **What was built across Phase 3:**
 1. `skills/council-router/SKILL.md` — new router orchestrator (Plan 01, commit 96a5009)
@@ -121,4 +121,4 @@ None — this plan modifies only the SKILLS array in install.sh. No new network 
 
 - `install.sh` modified with council-router in SKILLS: CONFIRMED
 - Task 1 commit `98060e2`: CONFIRMED
-- Task 2 checkpoint: PENDING (human verification required)
+- Task 2 checkpoint: APPROVED (human verified 2026-04-24)
