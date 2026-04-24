@@ -1,6 +1,6 @@
 ---
 name: council-code
-description: Multi-perspective code decision council. Runs 5 expert advisors (Contrarian, First Principles, Expansionist, Outsider, Executor) in parallel on a code/architecture/engineering question, then synthesizes a chairman verdict with agreements, clashes, blind spots, and a concrete next step.
+description: Multi-perspective code decision council. Runs 5 expert advisors (Contrarian, First Principles, Expansionist, Outsider, Executor) in parallel on a code/architecture/engineering question, then synthesizes a chairman verdict with agreements, clashes, blind spots, and a concrete next step. Trigger phrases: /council-code, code council, architecture choices, library selection, refactor vs rewrite, performance strategy, API design, code review, debugging hypotheses, stress test this approach, what am I missing.
 disable-model-invocation: true
 ---
 
@@ -20,7 +20,7 @@ Invoke when the user asks for a "council," a "second opinion on code," to "stres
 - Debugging hypotheses when root cause is ambiguous
 - Pre-PR self-review of significant changes
 
-Trigger phrases: `/council`, `council`, "get a second opinion," "stress test this approach," "what am I missing," "have the council review."
+Trigger phrases: `/council-code`, `council-code`, "get a second opinion," "stress test this approach," "what am I missing," "have the council review."
 
 ## When NOT to use
 
