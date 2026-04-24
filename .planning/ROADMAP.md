@@ -63,8 +63,8 @@ Plans:
   3. Each council SKILL.md carries domain-specific trigger phrases in its description frontmatter so Claude Code can surface the right council naturally
 **Plans:** 2 plans
 Plans:
-- [ ] 03-01-PLAN.md — Create council-router SKILL.md and add trigger phrases to council-code description
-- [ ] 03-02-PLAN.md — Update install.sh and verify end-to-end routing flow
+- [x] 03-01-PLAN.md — Create council-router SKILL.md and add trigger phrases to council-code description
+- [x] 03-02-PLAN.md — Update install.sh and verify end-to-end routing flow
 
 ### Phase 4: Council Design
 **Goal**: Users can run a 5-advisor design council on UI/UX decisions with domain-native personas and synthesis
