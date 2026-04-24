@@ -49,9 +49,9 @@ Plans:
   4. User can invoke any individual strategy advisor by name without running the full council
 **Plans:** 3 plans
 Plans:
-- [ ] 02-01-PLAN.md — Write 5 strategy advisor agent files with domain-native personas and unique output templates
-- [ ] 02-02-PLAN.md — Create council-strategy SKILL.md orchestrator with custom synthesis and Go/No-Go/Pivot verdict
-- [ ] 02-03-PLAN.md — Update install.sh arrays and verify end-to-end installation
+- [x] 02-01-PLAN.md — Write 5 strategy advisor agent files with domain-native personas and unique output templates
+- [x] 02-02-PLAN.md — Create council-strategy SKILL.md orchestrator with custom synthesis and Go/No-Go/Pivot verdict
+- [x] 02-03-PLAN.md — Update install.sh arrays and verify end-to-end installation
 
 ### Phase 3: Router
 **Goal**: Users can ask any question and receive an intelligent council suggestion with reasoning, without being auto-dispatched to the wrong council
