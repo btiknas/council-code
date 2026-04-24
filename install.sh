@@ -129,7 +129,7 @@ echo "  target: $CLAUDE_DIR"
 echo "  mode:   $MODE"
 echo
 
-SKILLS=( council-code council-update council-strategy )
+SKILLS=( council-code council-update council-strategy council-router )
 PERSONAS=( code-contrarian code-first-principles code-expansionist code-outsider code-executor \
            strategy-devils-advocate strategy-visionary strategy-pragmatist strategy-customer-champion strategy-operator )
 HOOKS=( council-statusline.js council-check-update.js council-check-update-worker.js patch-settings.js )
@@ -185,7 +185,7 @@ fi
 patch_settings_install
 
 echo
-ok "done. Restart Claude Code, then try: /council-code"
+ok "done. Restart Claude Code, then try: /council or /council-code"
 say "Update indicator: the statusline shows ⬆ /council-update when origin/main is ahead."
 if [[ "$MODE" == "symlink" ]]; then
   say "Updates: /council-update  — or: git pull in this repo"
