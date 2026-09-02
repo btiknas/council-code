@@ -1,6 +1,6 @@
 ---
 name: council-code
-description: Multi-perspective code decision council. Runs 5 expert advisors (Contrarian, First Principles, Expansionist, Outsider, Executor) in parallel on a code/architecture/engineering question, then synthesizes a chairman verdict with agreements, clashes, blind spots, and a concrete next step. Trigger phrases: /council-code, code council, architecture choices, library selection, refactor vs rewrite, performance strategy, API design, code review, debugging hypotheses, stress test this approach, what am I missing.
+description: "Multi-perspective code decision council. Runs 5 expert advisors (Contrarian, First Principles, Expansionist, Outsider, Executor) in parallel on a code/architecture/engineering question, then synthesizes a chairman verdict with agreements, clashes, blind spots, and a concrete next step. Trigger phrases: /council-code, code council, architecture choices, library selection, refactor vs rewrite, performance strategy, API design, code review, debugging hypotheses, stress test this approach, what am I missing."
 disable-model-invocation: true
 ---
 
